@@ -1,20 +1,20 @@
-# wallaby-ng-html2js-preprocessor
- Wallaby.js preprocessor to compile AngularJS templates to JavaScript.
+# wallaby-ng-jade2js-preprocessor
+ Wallaby.js preprocessor to compile AngularJS templates from Jade to JavaScript.
 
 #Installation
 
-The easiest way is to keep `wallaby-ng-html2js-preprocessor` as a devDependency in your `package.json`.
+The easiest way is to keep `wallaby-ng-jade2js-preprocessor` as a devDependency in your `package.json`.
 ```json
 {
   "devDependencies": {
-    "wallaby-ng-html2js-preprocessor": "~0.1"
+    "wallaby-ng-jade2js-preprocessor": "~0.1"
   }
 }
 ```
 
 You can simple do it by:
 ```bash
-npm install wallaby-ng-html2js-preprocessor --save-dev
+npm install wallaby-ng-jade2js-preprocessor --save-dev
 ```
 
 #Configuration
@@ -22,18 +22,18 @@ npm install wallaby-ng-html2js-preprocessor --save-dev
 ```js
 // wallaby.conf.js
 
-var angularTemplatePreprocessor = require('wallaby-ng-html2js-preprocessor');
+var angularTemplatePreprocessor = require('wallaby-ng-jade2js-preprocessor');
 module.exports = function () {
   return {
     files: [
       'app/**/*.js',
-      'app/**/*.html'
+      'app/**/*.jade'
      ],
      tests: [
        'tests/**/*.js'
      ],
     preprocessors: {
-      'app/**/*.html': function(file) {
+      'app/**/*.jade': function(file) {
         return angularTemplatePreprocessor.transform(file, {
           // strip this from the file path
           stripPrefix: 'public/',
@@ -58,4 +58,4 @@ module.exports = function () {
 
 #How does it work ?
 
-This preprocessor converts HTML files into JS strings and generates Angular modules. These modules, when loaded, puts these HTML files into the $templateCache and therefore Angular won't try to fetch them from the server.
+This preprocessor converts JADE files into JS strings and generates Angular modules. These modules, when loaded, puts these JADE files into the $templateCache and therefore Angular won't try to fetch them from the server.

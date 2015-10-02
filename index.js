@@ -1,4 +1,5 @@
 var util = require('util');
+var jade = require('jade');
 
 var TEMPLATE = 'angular.module(\'%s\', []).run(function($templateCache) {\n' +
   '  $templateCache.put(\'%s\',\n    \'%s\');\n' +
@@ -23,12 +24,30 @@ var transform = function(file, config) {
   config = typeof config === 'object' ? config : {};
 
   var moduleName = config.moduleName;
+  var locals = config.locals;
   var stripPrefix = new RegExp('^' + (config.stripPrefix || ''));
   var prependPrefix = config.prependPrefix || '';
+  var templateExtension = config.templateExtension || 'html';
   var stripSufix = new RegExp((config.stripSufix || '') + '$');
+  var jadeOptions = config.jadeOptions || {};
   var cacheIdFromPath = config && config.cacheIdFromPath || function(filepath) {
-      return prependPrefix + filepath.replace(stripPrefix, '').replace(stripSufix, '');
+      return prependPrefix + filepath
+              .replace(stripPrefix, '')
+              .replace(stripSufix, '')
+              .replace(/\.jade$/, '.' + templateExtension);
     };
+
+  var processed;
+
+  jadeOptions.filename = file.originalPath;
+
+  try {
+    processed = jade.compile(file.content, jadeOptions);
+  } catch (e) {
+    return;
+  }
+
+  file.content = processed(locals);
 
   var htmlPath = cacheIdFromPath(file.path);
 

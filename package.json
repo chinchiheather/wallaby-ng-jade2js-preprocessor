@@ -1,14 +1,14 @@
 {
-  "name": "wallaby-ng-html2js-preprocessor",
+  "name": "wallaby-ng-jade2js-preprocessor",
   "version": "0.1.0",
-  "description": "Wallaby.js preprocessor to compile AngularJS templates to JavaScript.",
+  "description": "Wallaby.js preprocessor to compile AngularJS templates from Jade to JavaScript.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/sheltonial/wallaby-ng-html2js-preprocessor.git"
+    "url": "https://github.com/chinchiheather/wallaby-ng-jade2js-preprocessor.git"
   },
   "keywords": [
     "wallaby-plugin",
@@ -16,12 +16,15 @@
     "wallaby",
     "angularjs",
     "angular",
-    "html2js"
+    "jade2js"
   ],
-  "author": "Andrew Shelton",
+  "dependencies": {
+    "jade": "~1.3.0"
+  },
+  "author": "Heather Roberts",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sheltonial/wallaby-ng-html2js-preprocessor/issues"
+    "url": "https://github.com/chinchiheather/wallaby-ng-jade2js-preprocessor/issues"
   },
-  "homepage": "https://github.com/sheltonial/wallaby-ng-html2js-preprocessor"
+  "homepage": "https://github.com/chinchiheather/wallaby-ng-jade2js-preprocessor"
 }
